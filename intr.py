@@ -16,12 +16,12 @@ class WineQualityNet(nn.Module):
             nn.Linear(64, 32),
             nn.ReLU(),
             nn.Dropout(0.2),
-            nn.Linear(32, 6)  # 6 классов: 3,4,5,6,7,8
+            nn.Linear(32, 6) 
         )
     def forward(self, x):
         return self.layers(x)
 
-# === Загрузка модели и скалера ===
+# Загрузка модели и скалера
 @st.cache_resource
 def load_model():
     model = WineQualityNet()
@@ -36,15 +36,15 @@ def load_scaler():
 model = load_model()
 scaler = load_scaler()
 
-# === Названия признаков (ТОЧНО в том же порядке, что и в датасете!) ===
+# Названия признаков 
 FEATURES = [
     'fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar',
     'chlorides', 'free sulfur dioxide', 'total sulfur dioxide',
     'density', 'pH', 'sulphates', 'alcohol'
 ]
 
-# === Streamlit интерфейс ===
-st.title("🍷 Предсказание качества вина")
+# Streamlit интерфейс
+st.title("Предсказание качества вина")
 st.write("Введите физико-химические параметры вина:")
 
 # Словарь разумных значений по умолчанию (на основе датасета)
